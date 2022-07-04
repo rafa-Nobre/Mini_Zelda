@@ -7,14 +7,19 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable, KeyListener {
 	public static int WIDTH = 640, HEIGHT = 480;
 	public static int SCALE = 3;
 	
-	public Player player;
+	public static Player player;
 	public World world;
+	
+	public List<Enemy> enemies = new ArrayList<Enemy>();
 	
 	public Game() {
 		this.addKeyListener(this);
@@ -23,11 +28,18 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		new Spritesheet();
 		
 		player = new Player(50, 50);
+		
+		enemies.add(new Enemy(32, 32));
+		
 		world = new World();
 	}
 	
 	public void tick() {
 		player.tick();
+		
+		for(int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).tick();
+		}
 	}
 	
 	public void render() {
@@ -44,6 +56,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		g.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
 		
 		player.render(g);
+		
+		for(int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).render(g);
+		}
+		
 		world.render(g);
 		
 		bs.show();

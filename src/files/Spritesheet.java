@@ -7,10 +7,13 @@ import javax.imageio.ImageIO;
 public class Spritesheet {
 	
 	public static BufferedImage spritesheet;
+	
 	public static BufferedImage[] player_front;
 	public static BufferedImage[] player_side_right;
 	public static BufferedImage[] player_side_left;
 	public static BufferedImage[] player_back;
+	
+	public static BufferedImage[] enemy_front;
 	public static BufferedImage tile_wall;
 	
 	public Spritesheet() {
@@ -25,6 +28,8 @@ public class Spritesheet {
 		player_side_left = new BufferedImage[2];
 		player_back = new BufferedImage[2];
 		
+		enemy_front = new BufferedImage[2];
+		
 		player_front[0] = Spritesheet.getSprite(0, 11, 16, 16);
 		player_front[1] = Spritesheet.getSprite(16, 11, 16, 16);
 		
@@ -36,6 +41,9 @@ public class Spritesheet {
 		
 		player_back[0] = Spritesheet.getSprite(69, 11, 16, 16);
 		player_back[1] = Spritesheet.getSprite(86, 11, 16, 16);
+		
+		enemy_front[0] = Spritesheet.getSprite(284, 211, 16, 16);
+		enemy_front[1] = Spritesheet.getSprite(305, 210, 16, 16);
 		
 		tile_wall = Spritesheet.getSprite(285, 237, 16, 16);
 	}
