@@ -94,6 +94,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			player.left = true;
 		}
 		
+		if(e.getKeyCode() == KeyEvent.VK_Z) {
+			player.shoot = true;
+		}
+		
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
 			player.up = true;
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -109,6 +113,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			player.right = false;
 		} else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.left = false;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_Z) {
+			player.shoot = false;
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
