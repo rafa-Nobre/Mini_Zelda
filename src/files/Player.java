@@ -9,6 +9,9 @@ public class Player extends Rectangle{
 	public int spd = 6;
 	public boolean right, up, down, left;
 	
+	public int curAnimation = 0;
+	public int curFrames = 0, targetFrames = 15;
+	
 	public Player(int x, int y) {
 		super(x, y, 32, 32);
 	}
@@ -25,12 +28,21 @@ public class Player extends Rectangle{
 		}else if(down && World.IsFree(x, y + spd)){
 			y += spd;
 		}
+		
+		curFrames++;
+		if(curFrames == targetFrames) {
+			curFrames = 0;
+			curAnimation++;
+			if(curAnimation == Spritesheet.player_front.length) {
+				curAnimation = 0;
+			}
+		}
 	}
 
 	
 	public void render(Graphics g) {
 		//g.setColor(Color.blue);
 		//g.fillRect(x, y, width, height);
-		g.drawImage(Spritesheet.player_front, x, y, 32, 32, null);
+		g.drawImage(Spritesheet.player_front[curAnimation], x, y, 32, 32, null);
 	}
 }
