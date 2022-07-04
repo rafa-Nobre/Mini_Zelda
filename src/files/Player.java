@@ -48,7 +48,10 @@ public class Player extends Rectangle{
 			if(curFrames == targetFrames) {
 				curFrames = 0;
 				curAnimation++;
-				if(curAnimation == Spritesheet.player_front.length) {
+				if(curAnimation == Spritesheet.player_front.length && 
+						curAnimation == Spritesheet.player_back.length &&
+							curAnimation == Spritesheet.player_side_right.length &&
+								curAnimation == Spritesheet.player_side_left.length) {
 					curAnimation = 0;
 				}
 			}
@@ -69,7 +72,18 @@ public class Player extends Rectangle{
 	public void render(Graphics g) {
 		//g.setColor(Color.blue);
 		//g.fillRect(x, y, width, height);
-		g.drawImage(Spritesheet.player_front[curAnimation], x, y, 32, 32, null);
+		if(down) {
+			g.drawImage(Spritesheet.player_front[curAnimation], x, y, 32, 32, null);
+		}else if(up) {
+			g.drawImage(Spritesheet.player_back[curAnimation], x, y, 32, 32, null);
+		}else if(right){
+			g.drawImage(Spritesheet.player_side_right[curAnimation], x, y, 32, 32, null);
+		}else if (left) {
+			g.drawImage(Spritesheet.player_side_left[curAnimation], x, y, 32, 32, null);
+		}else {
+			g.drawImage(Spritesheet.player_front[curAnimation], x, y, 32, 32, null);
+		}
+		
 		
 		for(int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).render(g);
