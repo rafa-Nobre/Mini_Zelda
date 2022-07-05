@@ -9,7 +9,7 @@ import java.util.Random;
 public class Enemy extends Rectangle{
 	
 	public int spd = 3;
-	public int right = 1, up = 0, down = 0, left = 0;
+	public boolean rightDir = false, leftDir = false, upDir = false, downDir = false;
 	public boolean shoot = false;
 	
 	public int curAnimation = 0;
@@ -33,10 +33,10 @@ public class Enemy extends Rectangle{
 			if(curFrames == targetFrames) {
 				curFrames = 0;
 				curAnimation++;
-				if(curAnimation == Spritesheet.enemy_front.length /*&& 
-						curAnimation == Spritesheet.player_back.length &&
-							curAnimation == Spritesheet.player_side_right.length &&
-								curAnimation == Spritesheet.player_side_left.length*/) {
+				if(curAnimation == Spritesheet.enemy_front.length && 
+						curAnimation == Spritesheet.enemy_back.length &&
+							curAnimation == Spritesheet.enemy_side_right.length &&
+								curAnimation == Spritesheet.enemy_side_left.length) {
 					curAnimation = 0;
 				}
 			}
@@ -55,17 +55,17 @@ public class Enemy extends Rectangle{
 
 	
 	public void render(Graphics g) {
-		/*
-		 * if(down) { g.drawImage(Spritesheet.player_front[curAnimation], x, y, 32, 32,
-		 * null); }else if(up) { g.drawImage(Spritesheet.player_back[curAnimation], x,
-		 * y, 32, 32, null); }else if(right){
-		 * g.drawImage(Spritesheet.player_side_right[curAnimation], x, y, 32, 32, null);
-		 * }else if (left) { g.drawImage(Spritesheet.player_side_left[curAnimation], x,
-		 * y, 32, 32, null); }else { g.drawImage(Spritesheet.player_front[curAnimation],
-		 * x, y, 32, 32, null); }
-		 */
-		g.drawImage(Spritesheet.enemy_front[curAnimation], x, y, 32, 32, null);
-		
+		if(downDir) {
+			g.drawImage(Spritesheet.enemy_front[curAnimation], x, y, 32, 32, null);
+		}else if(upDir) {
+			g.drawImage(Spritesheet.enemy_back[curAnimation], x, y, 32, 32, null);
+		}else if(rightDir){
+			g.drawImage(Spritesheet.enemy_side_right[curAnimation], x, y, 32, 32, null);
+		}else if (leftDir) {
+			g.drawImage(Spritesheet.enemy_side_left[curAnimation], x, y, 32, 32, null);
+		}else {
+			g.drawImage(Spritesheet.enemy_front[curAnimation], x, y, 32, 32, null);
+		}
 		
 		for(int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).render(g);
@@ -78,20 +78,24 @@ public class Enemy extends Rectangle{
 		if(x < p.x && World.IsFree(x + spd, y)) {
 			if(new Random().nextInt(100) < 50) {
 				x += spd;
+				rightDir = true;
 			}
 		}else if(x > p.x && World.IsFree(x - spd, y)) {
 			if(new Random().nextInt(100) < 50) {
 				x -= spd;
+				leftDir = true;
 			}
 		}
 		
 		if(y < p.y && World.IsFree(x, y + spd)) {
 			if(new Random().nextInt(100) < 50) {
 				y += spd;
+				upDir = true;
 			}
 		}else if(y > p.y && World.IsFree(x, y - spd)) {
 			if(new Random().nextInt(100) < 50) {
 				y -= spd;
+				downDir = true;
 			}
 		}
 	}
