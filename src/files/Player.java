@@ -49,7 +49,7 @@ public class Player extends Rectangle{
 				curAnimation++;
 				if(curAnimation == Spritesheet.player_front.length && 
 						curAnimation == Spritesheet.player_back.length &&
-							curAnimation == Spritesheet.player.length &&
+							curAnimation == Spritesheet.player_side_right.length &&
 								curAnimation == Spritesheet.player_side_left.length) {
 					curAnimation = 0;
 				}
@@ -74,7 +74,7 @@ public class Player extends Rectangle{
 		}else if(up) {
 			g.drawImage(Spritesheet.player_back[curAnimation], x, y, 32, 32, null);
 		}else if(right){
-			g.drawImage(Spritesheet.player[curAnimation], x, y, 32, 32, null);
+			g.drawImage(Spritesheet.player_side_right[curAnimation], x, y, 32, 32, null);
 		}else if (left) {
 			g.drawImage(Spritesheet.player_side_left[curAnimation], x, y, 32, 32, null);
 		}else {

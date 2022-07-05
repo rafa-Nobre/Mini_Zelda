@@ -51,8 +51,6 @@ public class Enemy extends Rectangle{
 			bullets.get(i).tick();
 		}
 	}
-		
-
 	
 	public void render(Graphics g) {
 		if(downDir) {
