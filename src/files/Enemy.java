@@ -9,7 +9,7 @@ import java.util.Random;
 public class Enemy extends Rectangle{
 	
 	public int spd = 3;
-	public boolean rightDir = false, leftDir = false, upDir = false, downDir = false;
+	public boolean rightDir, leftDir, upDir, downDir;
 	public boolean shoot = false;
 	
 	public int curAnimation = 0;
@@ -76,24 +76,24 @@ public class Enemy extends Rectangle{
 		Player p = Game.player;
 		
 		if(x < p.x && World.IsFree(x + spd, y)) {
-			if(new Random().nextInt(100) < 50) {
+			if(new Random().nextInt(100) < 60) {
 				x += spd;
 				rightDir = true;
 			}
 		}else if(x > p.x && World.IsFree(x - spd, y)) {
-			if(new Random().nextInt(100) < 50) {
+			if(new Random().nextInt(100) < 60) {
 				x -= spd;
 				leftDir = true;
 			}
 		}
 		
 		if(y < p.y && World.IsFree(x, y + spd)) {
-			if(new Random().nextInt(100) < 50) {
+			if(new Random().nextInt(100) < 60) {
 				y += spd;
 				upDir = true;
 			}
 		}else if(y > p.y && World.IsFree(x, y - spd)) {
-			if(new Random().nextInt(100) < 50) {
+			if(new Random().nextInt(100) < 60) {
 				y -= spd;
 				downDir = true;
 			}
