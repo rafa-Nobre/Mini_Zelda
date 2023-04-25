@@ -35,6 +35,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	}
 	
 	public void tick() {
+		//Method to update the game
 		player.tick();
 		
 		for(int i = 0; i < enemies.size(); i++) {
@@ -43,6 +44,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	}
 	
 	public void render() {
+		//Method to render(display) the game 
 		BufferStrategy bs = this.getBufferStrategy();
 		
 		if(bs == null) {
